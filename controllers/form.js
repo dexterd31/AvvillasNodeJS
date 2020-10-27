@@ -6,9 +6,16 @@ const tecnicosHasUsuarios = require('../models/tecnicosHasUsuarios')
 
 
 exports.formInput = (req, res) => {
+    const { id_tecnico , nombre, apellido } = req.user
+    dataUserSession = {
+        id: `${id_tecnico}`,
+        nombre: `${nombre} ${apellido}`
+    }
     res.render ('formulario', {
         nombre: 'Fase 1.',
+        dataUserSession,
         error: false
+
     })
 }
 

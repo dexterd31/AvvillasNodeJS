@@ -1,0 +1,12 @@
+@media screen and (min-width: 600px){
+    .fixSign{
+        width: 60%;
+        margin: auto;
+    }
+}
+@media screen and (min-width: 900px){
+    .fixSign{
+        width: 40%;
+        margin: auto;
+    }
+}
