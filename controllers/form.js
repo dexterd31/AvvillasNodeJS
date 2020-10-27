@@ -1,6 +1,8 @@
 const sequelize = require('sequelize')
 const usuarios = require('../models/usuarios')
 const equipos = require('../models/equipos')
+
+
 const checkList = require('../models/checkList')
 const tecnicosHasUsuarios = require('../models/tecnicosHasUsuarios')
 
@@ -58,7 +60,6 @@ exports.envioUsuario = async (req, res) => {
    
     const { nombre, apellido, cedula, ext, area, correo, usuarioRed } = req.body
 
-    console.log(req.body)
 
     try {
         await usuarios.create({
@@ -109,14 +110,15 @@ exports.envioMaquina = async (req, res) => {
     }
 }
 
-exports.formData = async (req , res) => {
+exports.formData = (req , res) => {
+
     
     let { numberServices, typeServices, Date, DNI, serialNumber, serialNumberRetira, cambioEquipo, Formateo} = req.body
     
-    const usuarioPromise = usuarios.findOne({where: {cedula : DNI}})
-    const equipoPromise = equipos.findOne({where: { serial: serialNumber}})
+    // const usuarioPromise = usuarios.findOne({where: {cedula : DNI}})
+    // const equipoPromise = equipos.findOne({where: { serial: serialNumber}})
 
-    const [ user, machine] = await Promise.all([usuarioPromise,equipoPromise])
+    // const [ user, machine] = await Promise.all([usuarioPromise,equipoPromise])
 
     //cambiando el on para los select
 
@@ -135,51 +137,94 @@ exports.formData = async (req , res) => {
     if(!serialNumberRetira){
         serialNumberRetira = 'No'
     }
+    
+    // try {
+
+//     await tecnicosHasUsuarios.create({
+//         usuarioIdUsuario: user.id_usuario,
+//         tecnicoIdTecnico: machine.id_equipo
+//     })
+//     //sube datos checlist
+//     await checkList.create({
+//         numeroServicio: numberServices,
+//         tipoServicio: typeServices,
+//         fecha: Date,
+//         equipoRetira:serialNumberRetira,
+//         cambioEquipo: cambioEquipo,
+//         formateo: Formateo,
+//         equipoIdEquipo: machine.id_equipo,
+//         usuarioIdUsuario: user.id_usuario,
+//         tecnicoIdTecnico: 1
+
+//     })
 
     
+//     req.app.locals = { numeroServicio: numberServices}
+//     res.redirect('/opciones')
+// } catch (error) {
     
-    try {
+//     res.render('formulario', {
+//         nombre: 'Fase 1.',
+//         error
+//     })
+    
+// }
 
-        await tecnicosHasUsuarios.create({
-            usuarioIdUsuario: user.id_usuario,
-            tecnicoIdTecnico: machine.id_equipo
-        })
-        //sube datos checlist
-        await checkList.create({
-            numeroServicio: numberServices,
-            tipoServicio: typeServices,
-            fecha: Date,
-            equipoRetira:serialNumberRetira,
-            cambioEquipo: cambioEquipo,
+
+    let datosForm = {
+        idTecnico: req.user.id_tecnico,
+        numeroServicio: numberServices,
+        tipoServicio: typeServices,
+        fecha: Date,
+        cedulaUser: DNI,
+        equipoActual: serialNumber,
+        equipoRetira: serialNumberRetira,
+        opcionesEquipo : {
             formateo: Formateo,
-            equipoIdEquipo: machine.id_equipo,
-            usuarioIdUsuario: user.id_usuario,
-            tecnicoIdTecnico: 1
-
-        })
-
-        
-        req.app.locals = { numeroServicio: numberServices}
-        res.redirect('/opciones')
-    } catch (error) {
-        
-        res.render('formulario', {
-            nombre: 'Fase 1.',
-            error
-        })
-        
+            cambioEquipo
+        }
     }
+    req.app.locals = datosForm
+    res.redirect('/opciones')
+ 
 }
 
 exports.formOptions = (req, res) => {
-    const dataReq= req.app.locals
     res.render('opciones', {
         nombre: 'Fase 2.'
     })
 }
-exports.formDataOptions = (req, res) => {
+exports.formDataOptions = async (req, res) => {
 
-    datos = req.body
-    console.log(req.app.locals)
-    res.send('enviado')
+    console.log(req.body)
+
+    if(res.app.locals.equipoRetira === 'No'){
+        const usuarioPromise = usuarios.findOne({where: {cedula : res.app.locals.cedulaUser}})
+        const equipoPromise = equipos.findOne({where: { serial: res.app.locals.equipoActual}})
+
+        const [ user, machine] = await Promise.all([usuarioPromise,equipoPromise])
+
+        console.log(machine)
+    }else {
+        const usuarioPromise = usuarios.findOne({where: {cedula : res.app.locals.cedulaUser}})
+        const equipoPromise = equipos.findOne({where: { serial: res.app.locals.equipoActual}})
+        const equipoRetiraPromise = equipos.findOne({where: { serial: res.app.locals.equipoRetira}})
+
+        const [ user, machine, machineOff] = await Promise.all([usuarioPromise,equipoPromise, equipoRetiraPromise])
+
+        console.log(machineOff)
+    }
+
+    
+
+    
+    
+    // console.log(req.app.locals)
+    // res.send('enviado')
 }
+
+
+
+
+
+

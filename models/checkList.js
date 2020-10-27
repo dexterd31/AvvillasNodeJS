@@ -1,6 +1,8 @@
 const Sequelize = require ('sequelize')
 const db = require ('../config/db')
 
+const opciones = require('../models/opciones');
+
 const checklist = db.define('checklist', {
     id_check:{
         type: Sequelize.INTEGER,
@@ -36,5 +38,7 @@ const checklist = db.define('checklist', {
         allowNull:false
     }
 })
+
+checklist.hasMany(opciones)
 
 module.exports = checklist;  

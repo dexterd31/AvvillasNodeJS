@@ -14,7 +14,8 @@ require ('./models/equipos')
 require ('./models/usuarios')
 require ('./models/tecnicos')
 require ('./models/tecnicosHasUsuarios') 
-require ('./models/checkList') 
+require ('./models/checkList'),
+require ('./models/opciones')  
 
 
 db.sync()
