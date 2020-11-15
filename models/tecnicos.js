@@ -28,6 +28,10 @@ const tecnico= db.define('tecnico', {
             msg: 'Cedula ya registrada'
         }
     },
+    perfil:{
+        type: Sequelize.STRING(30),
+        allownull: false
+    },
     correo:{
         type: Sequelize.STRING(60),
         allownull: false,

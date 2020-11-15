@@ -247,6 +247,3 @@ const opciones = db.define('opciones', {
  
 
 module.exports = opciones; 
-
-
- 

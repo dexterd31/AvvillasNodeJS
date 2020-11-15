@@ -26,8 +26,8 @@ module.exports = () => {
     router.post('/envioMaquina', auth.usuarioLogueado, form.envioMaquina)
 
     //opciones
-    router.get('/opciones', auth.usuarioLogueado, form.formOptions)
-    router.post('/opciones', auth.usuarioLogueado, form.formDataOptions)
+    router.get('/formulario/opciones', auth.usuarioLogueado, form.formOptions)
+    router.post('/formulario/resumen', auth.usuarioLogueado, form.formDataOptions)
 
     return router;
 }

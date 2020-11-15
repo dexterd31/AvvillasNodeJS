@@ -51,7 +51,6 @@ app.use(passport.session())
 app.use((req,res, next) => {
 
     res.locals.mensajes = req.flash()
-
     next()
 })
 

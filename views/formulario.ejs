@@ -1,13 +1,19 @@
 <%- include('./partials/nav.ejs') %> 
 <form action="/formulario" method="POST">
 <section class="container mt-4">
-    <% if(error){ %> 
+    <% if(error.message){ %>
         <div class="alert alert-dismissible alert-secondary">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>ocurre un error!</strong> <%=error.message %>
-          </div>
+        </div>
+    <% }else if(mensaje){ %>
+        <div class="alert alert-dismissible alert-primary text-center">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong><%=mensaje %></strong>, 
+        </div>
     <% } %> 
-    <div class="alert alert-dismissible alert-info">
+
+    <div id="info" class="alert alert-dismissible alert-info">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <h4 class="alert-heading">Importante!</h4>
         <p class="mb-0">La revision detallada del equipo contempla los datos del usuario y el equipo a realizar, asi mismo tener en cuenta que si es un formateo de equipo se debe realizar los backups del certificado digital del usuario, revision de ODBC en el perfil, tener en cuenta el nombre,ip y precheck el cual debe esta en su carpeta correspondiente en el disco local D.</p>
