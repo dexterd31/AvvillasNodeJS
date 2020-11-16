@@ -2,6 +2,7 @@ const sequelize = require('sequelize')
 const usuarios = require('../models/usuarios')
 const equipos = require('../models/equipos')
 const checkList = require('../models/checkList')
+const tecnicos = require('../models/tecnicos')
 const tecnicosHasUsuarios = require('../models/tecnicosHasUsuarios')
 const opciones = require('../models/opciones')
 
@@ -18,9 +19,6 @@ exports.formInput = (req, res) => {
         error: false, 
         mensaje: false
     })
-    
-    
-    
 
 }
 
@@ -113,14 +111,11 @@ exports.envioMaquina = async (req, res) => {
     }
 }
 
-exports.formData = (req , res) => {
-
+exports.formData = async (req , res) => {
     
-    let { numberServices, typeServices, Date, DNI, serialNumber, serialNumberRetira, cambioEquipo, Formateo} = req.body
-    
+    let { numberServices, typeServices, Date, DNI, serialNumber, serialNumberRetira , cambioEquipo, Formateo} = req.body
 
     //cambiando el on para los select
-
     if(Formateo){
         Formateo = 'Si'
     }else {
@@ -137,8 +132,6 @@ exports.formData = (req , res) => {
         serialNumberRetira = 'No'
     }
 
-
-
     let datosForm = {
         idTecnico: req.user.id_tecnico,
         numeroServicio: numberServices,
@@ -153,23 +146,86 @@ exports.formData = (req , res) => {
         }
     }
 
-
+    
     req.app.locals = datosForm
 
-    res.redirect('/formulario/opciones')
-
-
- 
-}
-
-exports.formOptions = (req, res) => {
-    
     res.render('opciones',{
         nombre:'Fase 2'
     })
-   
 }
+
+exports.formOptions = (req, res) => {
+    console.log(req.app.locals)
+    res.render('opciones',{
+        nombre:'Fase 2'
+    })
+
+    
+}
+
 exports.formDataOptions = async (req, res) => {
+
+    let { cedula, equipoActual, equipoRetira } = req.body
+    let { idTecnico, numeroServicio, tipoServicio, fecha, opcionesEquipo} = res.app.locals
+
+    try {
+        if(equipoRetira !== 'undefined'){
+            const equipoBaja = await equipos.findOne({where: { 
+                serial: equipoRetira
+            }})
+            equipoRetira = equipoBaja
+        }else{
+            equipoRetira = 'No'
+        }
+    
+        const usuario = await usuarios.findOne({ where: {
+            cedula
+        }})
+
+        const equipo= await equipos.findOne({where: { 
+            serial: equipoActual
+        }})
+        
+        // validar entradas
+    
+        let entrada = req.body
+        if(Object.entries(req.body).length === 0){
+            entrada = 'No'
+        }
+        
+        const dataFinal = {
+            idTecnico,
+            numeroServicio,
+            tipoServicio,
+            fecha,
+            user:usuario,
+            equipoActual: equipo, 
+            equipoRetira,
+            opcionesEquipo,
+            configuraciones: entrada
+        }
+        
+        req.app.locals= dataFinal
+    
+        res.render('comprobante',{
+            nombre: 'Fase 3.',
+            dataFinal: dataFinal
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.busquedaComprobantes = (req, res) =>{
+    res.render('consultas',{
+        nombre: 'Consulta Comprobantes'
+    })
+}
+
+
+exports.envioForm = async (req , res ) => {
+    
+    let { idTecnico, numeroServicio, tipoServicio, fecha, user, equipoActual,equipoRetira, opcionesEquipo, configuraciones} = res.app.locals
 
     let {
         inicioAdmin,
@@ -219,19 +275,10 @@ exports.formDataOptions = async (req, res) => {
         verificaCRM,
         verificaSisa,
         verificaSAP
-    }= req.body//opciones
-
-
-
-    const { idTecnico, numeroServicio, tipoServicio, fecha, cedulaUser, equipoActual, equipoRetira, opcionesEquipo} = res.app.locals
+    }= configuraciones //opciones
 
     try {
         if(equipoRetira === 'No'){
-            const usuarioPromise = usuarios.findOne({where: {cedula : cedulaUser}})
-            const equipoPromise = equipos.findOne({where: { serial: equipoActual}})
-    
-            const [ user, machine] = await Promise.all([usuarioPromise,equipoPromise])
-
 
             await checkList.create({
                 numeroServicio,
@@ -240,7 +287,7 @@ exports.formDataOptions = async (req, res) => {
                 equipoRetira,
                 cambioEquipo: opcionesEquipo.cambioEquipo,
                 formateo: opcionesEquipo.formateo,
-                equipoIdEquipo: machine.id_equipo,
+                equipoIdEquipo: equipoActual.id_equipo,
                 usuarioIdUsuario: user.id_usuario,
                 tecnicoIdTecnico: idTecnico
             })
@@ -304,32 +351,19 @@ exports.formDataOptions = async (req, res) => {
                 checklistIdCheck: IdCheck.id_check
             })
 
-            const mensaje = 'Comprobante almacenado correctamente'
-            res.render('formulario',{
-                nombre:'Fase 1', 
-                error: false,
-                mensaje : mensaje
-            })
+
+            res.send({'respuesta': 'Comprobante almacenado Correctamente.'})
             
       }else{
-
-
-            const usuarioPromise = usuarios.findOne({where: {cedula : cedulaUser}})
-            const equipoPromise = equipos.findOne({where: { serial: equipoActual}})
-            const equipoRetiraPromise = equipos.findOne({where: { serial: equipoRetira}})
-    
-            const [ user, machine, machineOff] = await Promise.all([usuarioPromise,equipoPromise, equipoRetiraPromise])
-
             
-
             await checkList.create({
                 numeroServicio,
                 tipoServicio,
                 fecha,
-                equipoRetira:machineOff.serial,
+                equipoRetira:equipoRetira.serial,
                 cambioEquipo: opcionesEquipo.cambioEquipo,
                 formateo: opcionesEquipo.formateo,
-                equipoIdEquipo: machine.id_equipo,
+                equipoIdEquipo: equipoActual.id_equipo,
                 usuarioIdUsuario: user.id_usuario,
                 tecnicoIdTecnico: idTecnico
             })
@@ -393,21 +427,44 @@ exports.formDataOptions = async (req, res) => {
                 checklistIdCheck: IdCheck.id_check
             })
 
-            const mensaje = 'Comprobante almacenado correctamente'
-            res.render('formulario',{
-                nombre:'Fase 1', 
-                error: false,
-                mensaje : mensaje
-            })
+            res.send({'respuesta': 'Comprobante almacenado Correctamente.'})
 
         }
     } catch (error) {
-        res.render('formulario', {
-            nombre: 'Fase 1.',
-            error
 
-        })
-
+        res.send({'error':`${error.message}`})
     }
+
 }
 
+
+
+exports.busquedaComprobantesPost = async (req , res) => {
+    const { dato } = req.body
+
+    const info = await checkList.findOne( { where : {
+        numeroServicio : dato
+    }})
+
+    if(info){
+        const usuario = await usuarios.findOne({where: {
+            id_usuario : info.usuarioIdUsuario
+        }})
+    
+        const tecnico = await tecnicos.findOne({ where: {
+            id_tecnico: info.tecnicoIdTecnico
+        }})
+    
+        const datos = {
+            numeroServicio: info.numeroServicio,
+            tipoServicio: info.tipoServicio,
+            tecnico: `${tecnico.nombre} ${tecnico.apellido }`,
+            usuario: `${usuario.nombres} ${usuario.apellidos}`
+        }
+    
+        res.send(datos)
+    }else{
+        res.send({error: 'Comprobante no existe'})
+    }
+    
+}

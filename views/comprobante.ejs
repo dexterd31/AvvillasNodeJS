@@ -1,0 +1,143 @@
+<%- include('./partials/nav.ejs') %> 
+<section class="container">
+    <h1 class="text-center mt-4">Resumen General.</h1>
+    <hr>
+    <div class="row">
+        <div class="col-lg-4 p-2">
+            <label class="text-center border d-block bg-primary text-white "><Strong>Fecha:</Strong></label>
+            <p class="mb-1 text-center d-block"><%=dataFinal.fecha %></p>
+        </div>
+        <div class="col-lg-4 p-2">
+            <label class="text-center d-block border bg-primary text-white"><Strong>Numero de Servicio:</Strong></label>
+            <p class="mb-1 text-center d-block"><%=dataFinal.numeroServicio%></p>
+        </div>
+        <div class="col-lg-4 p-2">
+            <label class="text-center d-block border bg-primary text-white"><Strong>Tipo de Servicio:</Strong></label>
+            <p class="mb-1 text-center d-block"><%=dataFinal.tipoServicio%></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 p-2">
+            <label class="text-center d-block border bg-primary text-white"><Strong>Cedula:</Strong></label>
+            <p class="mb-1 text-center d-block"><%=dataFinal.user.cedula%></p>
+        </div>
+        <div class="col-lg-4 p-2">
+            <label class="text-center d-block border bg-primary text-white"><Strong>Usuario:</Strong></label>
+            <p class="mb-1 text-center d-block"><%=`${dataFinal.user.nombres} ${dataFinal.user.apellidos}`%></p>
+        </div>
+        <div class="col-lg-4 p-2">
+            <label class="text-center d-block border bg-primary text-white"><Strong>Area:</Strong></label>
+            <p class="mb-1 text-center d-block"><%=dataFinal.user.area%></p>
+        </div>
+    </div>
+    <h5>Acciones:</h5>
+    <p><strong>Formateo: </strong><%=dataFinal.opcionesEquipo.formateo %>   <strong>Cambio de equipo:</strong> <%=dataFinal.opcionesEquipo.cambioEquipo %></p>
+    <h4 class="text-center">Equipo Actual</h4>
+    <div class="row">
+        <div class="col-lg-3 p-2">
+            <label class="text-center d-block border bg-primary text-white"><Strong>Serial:</Strong></label>
+            <p class="mb-1 text-center d-block"><%=dataFinal.equipoActual.serial%></p>
+        </div>
+        <div class="col-lg-3 p-2">
+            <label class="text-center d-block border bg-primary text-white"><Strong>Tipo:</Strong></label>
+            <p class="mb-1 text-center d-block"><%=dataFinal.equipoActual.tipo%></p>
+        </div>
+        <div class="col-lg-3 p-2">
+            <label class="text-center d-block border bg-primary text-white"><Strong>Marca:</Strong></label>
+            <p class="mb-1 text-center d-block"><%=dataFinal.equipoActual.marca%></p>
+        </div>
+        <div class="col-lg-3 p-2">
+            <label class="text-center d-block border bg-primary text-white"><Strong>Modelo:</Strong></label>
+            <p class="mb-1 text-center d-block"><%=dataFinal.equipoActual.modelo%></p>
+        </div>
+    </div>
+    <% if(dataFinal.equipoRetira !== 'No') {%> 
+        <h4 class="text-center">Equipo Retira</h4>
+            <div class="row">
+                <div class="col-lg-3 p-2">
+                    <label class="text-center d-block border bg-primary text-white"><Strong>Serial:</Strong></label>
+                    <p class="mb-1 text-center d-block"><%=dataFinal.equipoRetira.serial%></p>
+                </div>
+                <div class="col-lg-3 p-2">
+                    <label class="text-center d-block border bg-primary text-white"><Strong>Tipo:</Strong></label>
+                    <p class="mb-1 text-center d-block"><%=dataFinal.equipoRetira.tipo%></p>
+                </div>
+                <div class="col-lg-3 p-2">
+                    <label class="text-center d-block border bg-primary text-white"><Strong>Marca:</Strong></label>
+                    <p class="mb-1 text-center d-block"><%=dataFinal.equipoRetira.marca%></p>
+                </div>
+                <div class="col-lg-3 p-2">
+                    <label class="text-center d-block border bg-primary text-white"><Strong>Modelo:</Strong></label>
+                    <p class="mb-1 text-center d-block"><%=dataFinal.equipoRetira.modelo%></p>
+                </div>
+            </div>
+    <% } %> 
+    <h5 class="mt-4">Configuraciones Cargadas:</h5>
+    <% if(dataFinal.configuraciones !== 'No') {%>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="hecho" checked>
+            <label class="custom-control-label mb-2" for="hecho" >Hecho.</label>
+        </div> 
+    <% } else {%> 
+        <p>Ninguna.</p>
+    <% } %> 
+</section>
+<div class="container m-auto text-center">
+    <a type="button" id="ModalEnvio" class="btn btn-info mt-2" style="margin: auto; width: 20%;">Crear</a>
+</div>
+
+
+
+<!-- modal -->
+
+<div class="modal" id="modalEnvio">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 id="title" class="text-center modal-title w-100">Confirmación</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-2">
+            <div id="respuestaEquipo" style="display: none;"></div>
+            <p id="message" class="d-block text-center m-0">¿Desea cargar el Comprobante?</p>
+            <i id="icon" class="fas fa-file-upload d-block text-center m-3" style="font-size: 50px;"></i>
+            </div>
+            <div class="modal-footer border-0 d-flex justify-content-center">
+            <button id="envioForm" type="button" class="btn btn-primary">Guardar Cambios</button>
+            <button id="cerrarEnvioForm" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+      </div>
+    </div>
+</div>
+
+<!-- modal envio -->
+<div class="modal" id="modalSalida">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="text-center modal-title w-100">Confirmación Completa.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div style="display: none;"></div>
+            <p id="respuestaEquipo" class="d-block text-center m-0">Comprobante Cargado Correctamente.</p>
+            <i class="fas fa-check-circle d-block text-center m-3" style="font-size: 50px;"></i>
+            </div>
+            <div class="modal-footer border-0 d-flex justify-content-center">
+            </div>
+      </div>
+    </div>
+</div>
+
+<script>
+    $('#ModalEnvio').click(function(){
+            $('#modalEnvio').modal('show');
+        })
+</script>
+<script src="/js/envioForm.js"></script>
+
+<%- include('./partials/footer.ejs') %> 

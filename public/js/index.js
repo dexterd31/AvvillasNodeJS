@@ -1,3 +1,4 @@
+localStorage.clear();
 const btnCedula = document.getElementById('buscarCedula')
 const btnSerial = document.getElementById('buscarSerial')
 const btnSerialRetira = document.getElementById('buscarSerialRetira')
@@ -365,6 +366,24 @@ btnSerialRetira.addEventListener('click', e => {
           let spare = document.querySelector('#spareRetira').value= respuesta.spare 
       }
     })
+  }
+  
+})
+
+//localStorage
+const btnSiguiente = document.getElementById('siguiente')
+
+btnSiguiente.addEventListener('click', e => {
+  let customCheck1 = document.getElementById('customCheck1')
+  if(customCheck1.checked){
+    let serRet = document.getElementById('serialNumberRetira')
+    let Ced= document.getElementById('DNI')
+    let serAct = document.getElementById('serialNumber')
+    localStorage.setItem('{446a3996-7d7c-48ac-93c1-5280a638fcca}', JSON.stringify({cedula: `${Ced.value}`, actual: `${serAct.value}`, retira: `${serRet.value}`}))
+  }else{
+    let Ced= document.getElementById('DNI')
+    let serAct = document.getElementById('serialNumber')
+    localStorage.setItem('{446a3996-7d7c-48ac-93c1-5280a638fcca}', JSON.stringify({cedula: `${Ced.value}`, actual: `${serAct.value}`}))
   }
   
 })

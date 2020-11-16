@@ -15,7 +15,7 @@ module.exports = () => {
     //formulario
     router.get('/formulario', auth.usuarioLogueado, form.formInput)
     //envio de datos 
-    router.post('/formulario', auth.usuarioLogueado, form.formData)
+    router.post('/formulario/opciones', auth.usuarioLogueado, form.formData)
 
     //valida datos
     router.post('/buscarCedula', auth.usuarioLogueado, form.searchDataUser)
@@ -26,8 +26,13 @@ module.exports = () => {
     router.post('/envioMaquina', auth.usuarioLogueado, form.envioMaquina)
 
     //opciones
-    router.get('/formulario/opciones', auth.usuarioLogueado, form.formOptions)
-    router.post('/formulario/resumen', auth.usuarioLogueado, form.formDataOptions)
+    // router.get('/formulario/opciones', auth.usuarioLogueado, form.formOptions)
+    router.post('/formulario/opciones/resumen', auth.usuarioLogueado, form.formDataOptions)
+    router.post('/formulario/opciones/resumen/envioForm', auth.usuarioLogueado, form.envioForm)
+
+    //menu opciones
+    router.get('/busqueda', auth.usuarioLogueado, form.busquedaComprobantes)
+    router.post('/busqueda', auth.usuarioLogueado, form.busquedaComprobantesPost)
 
     return router;
 }

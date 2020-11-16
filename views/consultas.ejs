@@ -1,0 +1,30 @@
+<%- include('./partials/nav.ejs') %> 
+<section class="container mt-4">
+    <div class="form-inline mt-4 my-lg-0">
+        <label class="mr-2" for="busqueda">Numero de Caso / Incidente</label>
+        <input class="form-control mr-sm-2" id="buscar" type="text" placeholder="Search" name="busqueda">
+        <button id="busqueda" class="btn btn-primary my-2 my-sm-0" type="button">Search</button>
+    </div>
+    <p id="error" class="text-secondary"></p>
+</section>
+<section class="container mt-5">
+    <table class="table table-hover text-center">
+        <thead>
+          <tr class="table-info">
+            <th scope="col">Numero de Servicio</th>
+            <th scope="col">Tipo de servicio</th>
+            <th scope="col">Tecnico en Sitio</th>
+            <th scope="col">Usuario</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr class="table-active">
+              <th scope="row" id='numeroServicio'>Ninguno</th>
+              <td id="tipoServicio">Ninguno</td>
+              <td id="tecnico">Ninguno</td>
+              <td id="usuario">Ninguno</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<script src="/js/busqueda.js"></script>
