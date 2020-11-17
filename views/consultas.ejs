@@ -1,30 +1,50 @@
 <%- include('./partials/nav.ejs') %> 
 <section class="container mt-4">
-    <div class="form-inline mt-4 my-lg-0">
+  <% if(datos.error){ %>
+    <div class="alert alert-dismissible alert-secondary">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>ocurre un error!</strong> <%=datos.error%>
+    </div>
+  <% } %>
+    <form action="/busqueda" method="POST">
+      <div class="form-inline mt-4 my-lg-0">
         <label class="mr-2" for="busqueda">Numero de Caso / Incidente</label>
         <input class="form-control mr-sm-2" id="buscar" type="text" placeholder="Search" name="busqueda">
-        <button id="busqueda" class="btn btn-primary my-2 my-sm-0" type="button">Search</button>
-    </div>
-    <p id="error" class="text-secondary"></p>
+        <button id="busqueda" class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+      </div>
+    </form>
 </section>
 <section class="container mt-5">
+  <div>
     <table class="table table-hover text-center">
-        <thead>
-          <tr class="table-info">
-            <th scope="col">Numero de Servicio</th>
-            <th scope="col">Tipo de servicio</th>
-            <th scope="col">Tecnico en Sitio</th>
-            <th scope="col">Usuario</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr class="table-active">
+      <thead>
+        <tr class="table-info">
+          <th scope="col">Numero de Servicio</th>
+          <th scope="col">Tipo de servicio</th>
+          <th scope="col">Tecnico en Sitio</th>
+          <th scope="col">Usuario</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="table-active">
+            <% if(datos) {%>
+              <th scope="row" id='numeroServicio'><%=datos.numeroServicio %></th>
+              <td id="tipoServicio"><%=datos.tipoServicio %> </td>
+              <td id="tecnico"><%=datos.tecnico %> </td>
+              <td id="usuario"><%=datos.usuario %> </td>
+            <% } else {%>
               <th scope="row" id='numeroServicio'>Ninguno</th>
               <td id="tipoServicio">Ninguno</td>
               <td id="tecnico">Ninguno</td>
               <td id="usuario">Ninguno</td>
-            </tr>
-        </tbody>
-    </table>
+            <% } %>   
+          </tr>
+      </tbody>
+  </table>
+    <% if(datos) { %>
+      <a class="btn btn-success" href="https://www.google.com" target="_blank">Google</a>
+    <% } %> 
+  </div>
+    
 </section>
-<script src="/js/busqueda.js"></script>
+<!-- <script src="/js/busqueda.js"></script> -->

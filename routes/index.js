@@ -2,6 +2,8 @@ const express = require ('express');
 const router = express.Router();
 const form = require ('../controllers/form')
 const auth = require ('../controllers/auth')
+const busqueda = require ('../controllers/busqueda')
+const userCreate = require ('../controllers/userCreate')
 
 module.exports = () => {
 
@@ -31,8 +33,13 @@ module.exports = () => {
     router.post('/formulario/opciones/resumen/envioForm', auth.usuarioLogueado, form.envioForm)
 
     //menu opciones
-    router.get('/busqueda', auth.usuarioLogueado, form.busquedaComprobantes)
-    router.post('/busqueda', auth.usuarioLogueado, form.busquedaComprobantesPost)
+    router.get('/busqueda', auth.usuarioLogueado, busqueda.busquedaComprobantes)
+    router.post('/busqueda', auth.usuarioLogueado, busqueda.busquedaComprobantesPost)
+
+    //creacion usuarios
+
+    router.get('/usuarios', auth.usuarioLogueado, userCreate.creaUsuario)
+    router.post('/usuarios', auth.usuarioLogueado, userCreate.creaUsuarioForm)
 
     return router;
 }

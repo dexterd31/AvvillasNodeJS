@@ -8,10 +8,13 @@ const opciones = require('../models/opciones')
 
 
 exports.formInput = (req, res) => {
-    const { id_tecnico , nombre, apellido } = req.user
+
+    const { id_tecnico , nombre, apellido, perfil } = req.user
     dataUserSession = {
         id: `${id_tecnico}`,
-        nombre: `${nombre} ${apellido}`
+        nombre: `${nombre} ${apellido}`,
+        perfil: perfil
+
     }
 
     res.render ('formulario', {
@@ -155,7 +158,7 @@ exports.formData = async (req , res) => {
 }
 
 exports.formOptions = (req, res) => {
-    console.log(req.app.locals)
+    
     res.render('opciones',{
         nombre:'Fase 2'
     })
@@ -214,12 +217,6 @@ exports.formDataOptions = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-}
-
-exports.busquedaComprobantes = (req, res) =>{
-    res.render('consultas',{
-        nombre: 'Consulta Comprobantes'
-    })
 }
 
 
@@ -435,36 +432,4 @@ exports.envioForm = async (req , res ) => {
         res.send({'error':`${error.message}`})
     }
 
-}
-
-
-
-exports.busquedaComprobantesPost = async (req , res) => {
-    const { dato } = req.body
-
-    const info = await checkList.findOne( { where : {
-        numeroServicio : dato
-    }})
-
-    if(info){
-        const usuario = await usuarios.findOne({where: {
-            id_usuario : info.usuarioIdUsuario
-        }})
-    
-        const tecnico = await tecnicos.findOne({ where: {
-            id_tecnico: info.tecnicoIdTecnico
-        }})
-    
-        const datos = {
-            numeroServicio: info.numeroServicio,
-            tipoServicio: info.tipoServicio,
-            tecnico: `${tecnico.nombre} ${tecnico.apellido }`,
-            usuario: `${usuario.nombres} ${usuario.apellidos}`
-        }
-    
-        res.send(datos)
-    }else{
-        res.send({error: 'Comprobante no existe'})
-    }
-    
 }

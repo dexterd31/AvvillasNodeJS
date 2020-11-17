@@ -1,0 +1,51 @@
+<%- include('./partials/nav.ejs') %> 
+<section class="container">
+    <h1 class="text-center mt-3">Crear Usuarios</h1>
+    <form action="/usuarios" method="POST">
+        <legend>Formulario de Ingreso.</legend>
+        <% if(mensaje.error){ %>
+            <div class="alert alert-dismissible alert-secondary">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>ocurre un error:</strong> <%=mensaje.error %>
+            </div>
+        <% } %>
+
+        <% if(mensaje.confirmar){ %>
+            <div class="alert alert-dismissible alert-primary">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <%=mensaje.confirmar %>
+            </div>
+        <% } %>
+        <div class="form-group">
+            <label for="cedula">Cedula</label>
+            <input type="text" class="form-control" id="cedula" name="cedula" placeholder="###############" required>
+        </div>
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" required>
+        </div>
+        <div class="form-group">
+            <label for="apellido">Apellido</label>
+            <input type="text" class="form-control" id="apellido" name="apellido" placeholder="" required>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo</label>
+            <input type="email" class="form-control" id="correo" name="correo" placeholder="Enter email" required>
+        </div>
+        <div class="form-group">
+            <label for="contraseña">Contraseña</label>
+            <input type="password" class="form-control" id="contraseña" name="pass" placeholder="Password" required>
+        </div>
+        <div class="">
+            <div class="form-group">
+                <label for="rol">Rol</label>
+                <select name="rol" class="custom-select" required>
+                    <option value="" selected disabled>Seleccion</option>
+                    <option value="Coordinador">Coordinador</option>
+                    <option value="Tecnico">Tecnico</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</section>

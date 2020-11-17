@@ -11,10 +11,12 @@
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="/busqueda">Busqueda</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="">Informes</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/usuarios">Creacion de Usuarios</a>
-                <div class="dropdown-divider"></div>
+                <% if(dataUserSession.perfil === 'Coordinador') {%>
+                  <a class="dropdown-item" href="">Informes</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/usuarios">Creacion de Usuarios</a>
+                  <div class="dropdown-divider"></div>
+                <% } %> 
                 <a class="dropdown-item" href="#">Separated link</a>
               </div>
             </li>
