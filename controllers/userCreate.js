@@ -1,3 +1,4 @@
+const db = require( '../config/db')
 const tecnicos = require('../models/tecnicos')
 
 exports.creaUsuario = (req, res) => {
@@ -40,4 +41,55 @@ exports.creaUsuarioForm = async (req, res) => {
             mensaje: { error: 'Usuario ya creado.'}
         }) 
     }
+}
+
+exports.cambiarPass = async (req, res) => {
+
+    const usuario = await tecnicos.findAll()
+
+    let lista = []
+    usuario.forEach(element => {
+        lista.push(element.dataValues)
+    });
+
+    res.render('actualizaPass',{
+        nombre: 'Usuarios',
+        lista,
+        mensaje: false
+    })
+}
+
+exports.cambiarPassForm = (req, res) => {
+
+    const { cedula } = req.body
+
+    res.render('confirmarPass', {
+        nombre: 'Confirmar Contraseña',
+        cedula: cedula,
+
+    })
+
+}
+
+exports.cambiarPassDone = async (req, res) => {
+
+
+    const { pass , cedula } = req.body
+    const [results, metadata] = await db.query(`UPDATE tecnicos SET contraseña= "${pass}" WHERE cedula = "${cedula}" `);
+
+    const usuario = await tecnicos.findAll()
+
+    let lista = []
+    usuario.forEach(element => {
+        lista.push(element.dataValues)
+    });
+
+    res.render('actualizaPass',{
+        nombre: 'Usuarios',
+        lista,
+        mensaje:'Cambio realizado Correctamente'
+    })
+    
+
+
 }

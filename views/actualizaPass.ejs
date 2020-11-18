@@ -1,0 +1,49 @@
+<%- include('./partials/nav.ejs') %> 
+<section class="container">
+    <h1 class="text-center mt-3">Usuarios.</h1>
+    <% if(mensaje){ %>
+      <div class="alert alert-dismissible alert-primary">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong><%=mensaje %></strong> 
+      </div>
+  <% } %>
+    <table id="table" class="table table-hover text-center mt-4">
+        <thead>
+          <tr class="table-info">
+            <th scope="col">Cedula</th>
+            <th scope="col">Nombre Completo</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Contraseña</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% if(lista){ %> 
+                <% var cont = 0 %> 
+                <% lista.forEach( e => { %>
+                    <tr class="table-active"></tr>
+                        <th scope="row" id='cedula'><%=e.cedula %></th>
+                        <td id="nombreCompleto"><%=`${e.nombre } ${e.apellido}`%> </td>
+                        <td id="correo"><%=e.correo %> </td>
+                        <td id="rol"><%=e.perfil%> </td>
+                        <!-- <td><a id="<%=`bnt${cont}`%>"  href="/cambiarPassForm">Cambiar</a></td> -->
+                        <td><form action="/cambiarPassform" method="POST">
+                            <input type="text" name="cedula" class="text-center form-control" id="cedula" style="display: none;" value="<%=e.cedula %> " readonly>
+                            <button id="opciones" class="btn btn-outline-success btn-lg">Enviar</button>
+                        </form></td>
+                    </tr>
+                    <% cont++ %> 
+                <% }) %> 
+              <% } else{%>
+                <tr class="table-active"></tr>
+                    <th scope="row" id='cedula'>Ninguno</th>
+                    <td id="nombreCompleto">Ninguno</td>
+                    <td id="correo">Ninguno</td>
+                    <td id="rol">Ninguno</td>
+                    <td><a id="btn" href="#">Cambiar</a></td>
+                </tr>
+              <% } %>   
+        </tbody>
+    </table>
+</section>
+<script src="/js/cambiaPass.js"></script>

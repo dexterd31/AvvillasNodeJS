@@ -1,5 +1,5 @@
-<section class="container-fluid" id="document" style="width: 950px;">
-    <section  >
+<section id="document">
+    <section class="container">
         <h4 class="text-center mt-4">CheckList Windows 10 SAC ENTERPRISE.</h4>
         <hr>
         <div class="row">
@@ -18,29 +18,29 @@
         </div>
         <div class="row">
             <div class="col-lg-6 p-0">
-                <label class="text-center d-block border bg-primary text-white"><Strong>Cedula Tecnico</Strong></label>
+                <label class="text-center d-block border bg-primary text-white"><Strong>Cedula del Tecnico</Strong></label>
                 <p class="mb-1 text-center d-block"><%=tecnico.dataValues.cedula%></p>
             </div>
             <div class="col-lg-6 p-0">
-                <label class="text-center d-block border bg-primary text-white"><Strong>Nombre</Strong></label>
-                <p class="mb-1 text-center d-block"><%=`${tecnico.dataValues.nombre} ${tecnico.dataValues.apellido} `%></p>
+                <label class="text-center d-block border bg-primary text-white"><Strong>Nombre del Tecnico</Strong></label>
+                <p class="mb-1 text-center d-block"><%=`${tecnico.dataValues.nombre} ${tecnico.dataValues.apellido}`%></p>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-2 p-0">
-                <label class="text-center d-block border bg-primary text-white"><Strong>Cedula Usuario</Strong></label>
+                <label class="text-center d-block border bg-primary text-white"><Strong>Cedula de Usuario</Strong></label>
                 <p class="mb-1 text-center d-block"><%=usuario.cedula%></p>
             </div>
             <div class="col-lg-4 p-0">
-                <label class="text-center d-block border bg-primary text-white"><Strong>Nombre</Strong></label>
+                <label class="text-center d-block border bg-primary text-white"><Strong>Usuario de Usuario</Strong></label>
                 <p class="mb-1 text-center d-block"><%=`${usuario.dataValues.nombres} ${usuario.dataValues.apellidos}`%></p>
             </div>
             <div class="col-lg-4 p-0">
-                <label class="text-center d-block border bg-primary text-white"><Strong>Correo</Strong></label>
+                <label class="text-center d-block border bg-primary text-white"><Strong>Correo de Usuario:</Strong></label>
                 <p class="mb-1 text-center d-block"><%=usuario.dataValues.correo%></p>
             </div>
             <div class="col-lg-2 p-0">
-                <label class="text-center d-block border bg-primary text-white"><Strong>Extencion</Strong></label>
+                <label class="text-center d-block border bg-primary text-white"><Strong>Extencion de Usuario</Strong></label>
                 <p class="mb-1 text-center d-block"><%=usuario.dataValues.extencion%></p>
             </div>
         </div>
@@ -108,10 +108,12 @@
         </div>
        
     </section>
+    <div class="container m-auto text-center">
+        <a id="createPdf" class="btn btn-info mt-2" style="margin: auto; width: 20%;">Crear</a>
+    </div>
+    
+    <script src="/js/html2pdf.bundle.min.js"></script>
+    <script src="/js/pdfCreate.js"></script>
+    
+    
 </section>
-<div class="container m-auto text-center">
-    <a id="createPdf" class="btn btn-info mt-2" style="margin: auto; width: 20%;">Crear</a>
-</div>
-
-<script src="/js/html2pdf.bundle.min.js"></script>
-<script src="/js/pdfCreate.js"></script>

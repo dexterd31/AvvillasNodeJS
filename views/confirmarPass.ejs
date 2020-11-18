@@ -1,0 +1,15 @@
+<%- include('./partials/nav.ejs') %> 
+<section class="container">
+    <h1 class="text-center mt-3">Confirmar Contraseña.</h1>
+    <form action="/cambiarPass" method="POST">
+        <legend>Confirmar Contraseña.</legend>
+        <div class="form-group">
+            <label for="contraseña">Contraseña</label>
+            <input type="password" class="form-control" id="contraseña" name="pass" placeholder="Password" required>
+            <% if(cedula) { %> 
+            <input type="text" name="cedula" class="text-center form-control" id="cedula" style="display: none;" value="<%=cedula %> " readonly>
+            <% } %> 
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</section>

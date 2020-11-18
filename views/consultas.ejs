@@ -42,9 +42,14 @@
       </tbody>
   </table>
     <% if(datos) { %>
-      <a class="btn btn-success" href="https://www.google.com" target="_blank">Google</a>
+        <form action="/comprobante" method="POST" target="_blank">
+          <input type="text" name="numeroServicio" class="text-center form-control" id="cedula" style="display: none;" value="<%=datos.numeroServicio %> " readonly>
+          <div class="container m-auto text-center">
+            <button id="siguiente" class="btn btn-outline-success btn-lg">Siguiente</button>
+          </div>
+        </form>
+      
     <% } %> 
   </div>
-    
 </section>
 <!-- <script src="/js/busqueda.js"></script> -->
