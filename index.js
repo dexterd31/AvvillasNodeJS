@@ -9,6 +9,8 @@ const cookieParser = require ('cookie-parser')
 const passport = require('./config/passport')
 // traer el config del DB
 const db = require ('./config/db')
+//traer los valores de las variables
+require ('dotenv').config({path: 'variables.env'})
 
 require ('./models/equipos')
 require ('./models/usuarios')
@@ -55,6 +57,10 @@ app.use((req,res, next) => {
 })
 
 app.use('/', router())
-app.listen(3000, () => {
+
+const host = process.env.HOST || '0.0.0.0';
+const port = process.env.PORT || 3000
+
+app.listen(port, () => {
     console.log('Online Server')
 })
