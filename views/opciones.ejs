@@ -1,269 +1,269 @@
-<%- include('./partials/nav.ejs') %> 
-<form action="/formulario/opciones/resumen" method="POST">
-<section class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-12">
-            <h4 class="text-center p-2 mt-3" style="color: white; background: black;">Configuraciones</h4>
-            <div class="form-group">
-                <small id="serialHelp" class="form-text text-muted text-center m-3">Sistema Operativo.</small>
-                <hr>
-                <div class="custom-control custom-checkbox mr-4 ">
-                  <input type="checkbox" class="custom-control-input" id="customCheck1" name="inicioAdmin">
-                  <label class="custom-control-label mb-2" for="customCheck1">Inicio como Administrador.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck2" name="configRegional">
-                    <label class="custom-control-label mb-2" for="customCheck2">verificar configuracion regional, teclado y fecha</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck3" name="controladoresOn">
-                    <label class="custom-control-label mb-2" for="customCheck3">Verificar que todos los controladores este instalados.</label>
-                </div>
-              </div>
-        </div>
-    </div>
-</section>
-<section class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-12">
-            <div class="form-group">
-                <small id="serialHelp" class="form-text text-muted text-center m-3">Instalacion de Software.</small>
-                <hr>
-                <div class="custom-control custom-checkbox mr-4 ">
-                  <input type="checkbox" class="custom-control-input" id="customCheck4" name="estandarNombre">
-                  <label class="custom-control-label mb-2" for="customCheck4">Nombre de la maquina de acuerdo al estandar de nomenclatura definido (15 Caracteres - Mayusculas).</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck5" name="ipGatewayDns">
-                    <label class="custom-control-label mb-2" for="customCheck5">Conf. IP, Gateway y DNS (10.10.3.120 y 10.10.3.121  Contingencia 10.10.3.119 y 10.10.7.120)</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck6" name="nucleosProcesador">
-                    <label class="custom-control-label mb-2" for="customCheck6">Activar los procesadores del equipo según corresponda y Verificar la totalidad de la memoria.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck7" name="matriculaDominio">
-                    <label class="custom-control-label mb-2" for="customCheck7">Matricular en dominio bancoavvillas.net - Previamente bajar del Dominio, Solicitar Eliminar Objeto en AD</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck8" name="agregargrupos">
-                    <label class="custom-control-label mb-2" for="customCheck8">Agregar grupos  administradores IBMSoporte y PC Admin luego forzar politicas y Borrar Usuarios locales no Permitidos.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck9" name="intalaChrome">
-                    <label class="custom-control-label mb-2" for="customCheck9">Instalar Google Chrome con version a la fecha actual.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck10" name="instalaAltiris">
-                    <label class="custom-control-label mb-2" for="customCheck10">Instalar Altiris version 7.10  y pcAnywhere_12_6 (pcAClientInstallManager.exe /iall). AexAgentUtil /Server:zaparo.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck11" name="instalaTsm">
-                    <label class="custom-control-label mb-2" for="customCheck11">Instalar Agente TSM.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck12" name="instalaSystemCenter">
-                    <label class="custom-control-label mb-2" for="customCheck12">Instalar System Center CB-2018.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck13" name="instalaMcafee">
-                    <label class="custom-control-label mb-2" for="customCheck13">Instalar Agente McafeeSmartInstall_23012019 - UNICAMENTE EN PORTATILES EXCEPTO PRESIDENCIAS Y VICEPRESIDENCIAS.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck14" name="verificaFirewall">
-                    <label class="custom-control-label mb-2" for="customCheck14">Verificar que este iniciado windows firewall en servicios y dejarlo automatico.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck15" name="licenciaOffice">
-                    <label class="custom-control-label mb-2" for="customCheck15">Verificar la activacion automatica de Licencia de Windows y Office365.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck16" name="instalaTripton">
-                    <label class="custom-control-label mb-2" for="customCheck16">Instalar Agente WebSense (Tripton).</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck17" name="instalaAntivirus">
-                    <label class="custom-control-label mb-2" for="customCheck17">Instalar Antivirus Symantec Endpoint versión 14.2 con updates a la fecha.</label>
+<%- include('./partials/nav.ejs') %>
+    <form action="/formulario/opciones/resumen" method="POST">
+        <section class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <h4 class="text-center p-2 mt-3" style="color: white; background: black;">Configuraciones</h4>
+                    <div class="form-group">
+                        <small id="serialHelp" class="form-text text-muted text-center m-3">Sistema Operativo.</small>
+                        <hr>
+                        <div class="custom-control custom-checkbox mr-4 ">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" name="inicioAdmin">
+                            <label class="custom-control-label mb-2" for="customCheck1">Inicio como Administrador.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck2" name="configRegional">
+                            <label class="custom-control-label mb-2" for="customCheck2">verificar configuracion regional, teclado y fecha</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck3" name="controladoresOn">
+                            <label class="custom-control-label mb-2" for="customCheck3">Verificar que todos los controladores este instalados.</label>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<section class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-12">
-            <div class="form-group">
-                <small id="serialHelp" class="form-text text-muted text-center m-3">Configuracion de Perfil.</small>
-                <hr>
-                <div class="custom-control custom-checkbox mr-4 ">
-                  <input type="checkbox" class="custom-control-input" id="customCheck18" name="configPerfil">
-                  <label class="custom-control-label mb-2" for="customCheck18">Ingresar al Perfil usuario final.</label>
+        </section>
+        <section class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <small id="serialHelp" class="form-text text-muted text-center m-3">Instalacion de Software.</small>
+                        <hr>
+                        <div class="custom-control custom-checkbox mr-4 ">
+                            <input type="checkbox" class="custom-control-input" id="customCheck4" name="estandarNombre">
+                            <label class="custom-control-label mb-2" for="customCheck4">Nombre de la maquina de acuerdo al estandar de nomenclatura definido (15 Caracteres - Mayusculas).</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck5" name="ipGatewayDns">
+                            <label class="custom-control-label mb-2" for="customCheck5">Conf. IP, Gateway y DNS (10.10.3.120 y 10.10.3.121  Contingencia 10.10.3.119 y 10.10.7.120)</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck6" name="nucleosProcesador">
+                            <label class="custom-control-label mb-2" for="customCheck6">Activar los procesadores del equipo según corresponda y Verificar la totalidad de la memoria.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck7" name="matriculaDominio">
+                            <label class="custom-control-label mb-2" for="customCheck7">Matricular en dominio bancoavvillas.net - Previamente bajar del Dominio, Solicitar Eliminar Objeto en AD</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck8" name="agregargrupos">
+                            <label class="custom-control-label mb-2" for="customCheck8">Agregar grupos  administradores IBMSoporte y PC Admin luego forzar politicas y Borrar Usuarios locales no Permitidos.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck9" name="intalaChrome">
+                            <label class="custom-control-label mb-2" for="customCheck9">Instalar Google Chrome con version a la fecha actual.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck10" name="instalaAltiris">
+                            <label class="custom-control-label mb-2" for="customCheck10">Instalar Altiris version 7.10  y pcAnywhere_12_6 (pcAClientInstallManager.exe /iall). AexAgentUtil /Server:zaparo.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck11" name="instalaTsm">
+                            <label class="custom-control-label mb-2" for="customCheck11">Instalar Agente TSM.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck12" name="instalaSystemCenter">
+                            <label class="custom-control-label mb-2" for="customCheck12">Instalar System Center CB-2018.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck13" name="instalaMcafee">
+                            <label class="custom-control-label mb-2" for="customCheck13">Instalar Agente McafeeSmartInstall_23012019 - UNICAMENTE EN PORTATILES EXCEPTO PRESIDENCIAS Y VICEPRESIDENCIAS.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck14" name="verificaFirewall">
+                            <label class="custom-control-label mb-2" for="customCheck14">Verificar que este iniciado windows firewall en servicios y dejarlo automatico.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck15" name="licenciaOffice">
+                            <label class="custom-control-label mb-2" for="customCheck15">Verificar la activacion automatica de Licencia de Windows y Office365.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck16" name="instalaTripton">
+                            <label class="custom-control-label mb-2" for="customCheck16">Instalar Agente WebSense (Tripton).</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck17" name="instalaAntivirus">
+                            <label class="custom-control-label mb-2" for="customCheck17">Instalar Antivirus Symantec Endpoint versión 14.2 con updates a la fecha.</label>
+                        </div>
+                    </div>
                 </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck19" name="redirecD">
-                    <label class="custom-control-label mb-2" for="customCheck19">Cada instalación nueva, el redireccionamiento de las carpetas: Escritorio/ Mis documentos / Descargas / Imágenes; deben ir a la partición D.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck20" name="privilegiosAdmin">
-                    <label class="custom-control-label mb-2" for="customCheck20">Asignar privilegios de Usuario administrador (Verifique permisos con el precheck y en caso de tener dudas comunicarse con Admon Circular 052 Cristian Rivera) .</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck21" name="configImpresoras">
-                    <label class="custom-control-label mb-2" for="customCheck21">Impresoras red o locales (Predefinida).</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck22" name="configODBC">
-                    <label class="custom-control-label mb-2" for="customCheck22">Configurar los ODBC´s (Según precheck).</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck23" name="configUnidadesRed">
-                    <label class="custom-control-label mb-2" for="customCheck23">Configurar las Unidades de red (Según precheck).</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck24" name="configPerfilCorreo">
-                    <label class="custom-control-label mb-2" for="customCheck24">Verificar Numero de perfiles de correo a configurar (según precheck).</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck25" name="configPst">
-                    <label class="custom-control-label mb-2" for="customCheck25">Configurar Correo. Todos los PST deben quedar en  D ejemplo D:\Correos\Martinezos2018.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck26" name="configFirmasCorreo">
-                    <label class="custom-control-label mb-2" for="customCheck26">Restaurar Firma Outlook  Formato usuario.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck27" name="configCertDigital">
-                    <label class="custom-control-label mb-2" for="customCheck27">Importar Certificado Digital  y/o crearlo según el caso.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck28" name="configWifi">
-                    <label class="custom-control-label mb-2" for="customCheck28">Verificacion de la CONECTIVIDAD del Wifi con el usuario (Portatil).
+            </div>
+        </section>
+        <section class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <small id="serialHelp" class="form-text text-muted text-center m-3">Configuracion de Perfil.</small>
+                        <hr>
+                        <div class="custom-control custom-checkbox mr-4 ">
+                            <input type="checkbox" class="custom-control-input" id="customCheck18" name="configPerfil">
+                            <label class="custom-control-label mb-2" for="customCheck18">Ingresar al Perfil usuario final.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck19" name="redirecD">
+                            <label class="custom-control-label mb-2" for="customCheck19">Cada instalación nueva, el redireccionamiento de las carpetas: Escritorio/ Mis documentos / Descargas / Imágenes; deben ir a la partición D.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck20" name="privilegiosAdmin">
+                            <label class="custom-control-label mb-2" for="customCheck20">Asignar privilegios de Usuario administrador (Verifique permisos con el precheck y en caso de tener dudas comunicarse con Admon Circular 052 Cristian Rivera) .</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck21" name="configImpresoras">
+                            <label class="custom-control-label mb-2" for="customCheck21">Impresoras red o locales (Predefinida).</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck22" name="configODBC">
+                            <label class="custom-control-label mb-2" for="customCheck22">Configurar los ODBC´s (Según precheck).</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck23" name="configUnidadesRed">
+                            <label class="custom-control-label mb-2" for="customCheck23">Configurar las Unidades de red (Según precheck).</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck24" name="configPerfilCorreo">
+                            <label class="custom-control-label mb-2" for="customCheck24">Verificar Numero de perfiles de correo a configurar (según precheck).</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck25" name="configPst">
+                            <label class="custom-control-label mb-2" for="customCheck25">Configurar Correo. Todos los PST deben quedar en  D ejemplo D:\Correos\Martinezos2018.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck26" name="configFirmasCorreo">
+                            <label class="custom-control-label mb-2" for="customCheck26">Restaurar Firma Outlook  Formato usuario.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck27" name="configCertDigital">
+                            <label class="custom-control-label mb-2" for="customCheck27">Importar Certificado Digital  y/o crearlo según el caso.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck28" name="configWifi">
+                            <label class="custom-control-label mb-2" for="customCheck28">Verificacion de la CONECTIVIDAD del Wifi con el usuario (Portatil).
                     En Propiedades: Protocolo de internet versión 4(TCP/IPv4): NO debe tener configurada Direccion IP ni DNS 
                     En Iexplorer deshabilitar el uso del servidor Proxy para wifi publicas.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck29" name="configExtencionesProgramas">
-                    <label class="custom-control-label mb-2" for="customCheck29">Asociar extensiones de archivos (.rar .ppt .jpg .7z)  con programas predeterminados.</label>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-12">
-            <div class="form-group">
-                <small id="serialHelp" class="form-text text-muted text-center m-3">Restauracion de información.</small>
-                <hr>
-                <div class="custom-control custom-checkbox mr-4 ">
-                    <input type="checkbox" class="custom-control-input" id="customCheck30" name="connfigAccesosDirectosPerfil">
-                    <label class="custom-control-label mb-2" for="customCheck30">Colocar los accesos directos del escritorio (Según Precheck).</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck31" name="configFavoritosInternet">
-                    <label class="custom-control-label mb-2" for="customCheck31">Colocar favoritos de internet  (Según Precheck).</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck47" name="configInfoMisDocumentos">
-                    <label class="custom-control-label mb-2" for="customCheck47">Colocar informacion de mis documentos  (Según Precheck).</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck29" name="configExtencionesProgramas">
+                            <label class="custom-control-label mb-2" for="customCheck29">Asociar extensiones de archivos (.rar .ppt .jpg .7z)  con programas predeterminados.</label>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<section class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-12">
-            <div class="form-group">
-                <small id="serialHelp" class="form-text text-muted text-center m-3">Entrega de Equipo a Usuario.</small>
-                <hr>
-                <div class="custom-control custom-checkbox mr-4 ">
-                    <input type="checkbox" class="custom-control-input" id="customCheck32" name="pruebasCorreo">
-                    <label class="custom-control-label mb-2" for="customCheck32">Pruebas de correo usuario (Outlook) y/o demas buzones .</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck33" name="pruebasEnvioCorreo">
-                    <label class="custom-control-label mb-2" for="customCheck33">Hacer pruebas envio correo cifrado (Certificado Digital).</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck34" name="pruebasODBC">
-                    <label class="custom-control-label mb-2" for="customCheck34">Realizar pruebas con las ODBC´s (Desde Acces o Excel).</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck35" name="pruebasSkype">
-                    <label class="custom-control-label mb-2" for="customCheck35">Ingresar a Skype Empresarial (o chat empresarial).</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck36" name="pruebasOffice">
-                    <label class="custom-control-label mb-2" for="customCheck36">Ingresar y verificar correcto funcionamiento del paquete office  (Word, Excel Power Point y Outlook) Access, Visio y Project (si aplica).</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck37" name="pruebasImpresoras">
-                    <label class="custom-control-label mb-2" for="customCheck37">Verifique sus impresoras instaladas.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck38" name="pruebasAntivirus">
-                    <label class="custom-control-label mb-2" for="customCheck38">Verifique que tenga su antivirus instalado  (Indicar al usuario).</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck39" name="pruebas7Zip">
-                    <label class="custom-control-label mb-2" for="customCheck39">Verifique funcionamiento del 7ZIP.</label>
+        </section>
+        <section class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <small id="serialHelp" class="form-text text-muted text-center m-3">Restauracion de información.</small>
+                        <hr>
+                        <div class="custom-control custom-checkbox mr-4 ">
+                            <input type="checkbox" class="custom-control-input" id="customCheck30" name="connfigAccesosDirectosPerfil">
+                            <label class="custom-control-label mb-2" for="customCheck30">Colocar los accesos directos del escritorio (Según Precheck).</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck31" name="configFavoritosInternet">
+                            <label class="custom-control-label mb-2" for="customCheck31">Colocar favoritos de internet  (Según Precheck).</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck47" name="configInfoMisDocumentos">
+                            <label class="custom-control-label mb-2" for="customCheck47">Colocar informacion de mis documentos  (Según Precheck).</label>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<section class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-12">
-            <div class="form-group">
-                <small id="serialHelp" class="form-text text-muted text-center m-3">Verificar Internet e Intranet.</small>
-                <hr>
-                <div class="custom-control custom-checkbox mr-4 ">
-                    <input type="checkbox" class="custom-control-input" id="customCheck40" name="verificaProgramas">
-                    <label class="custom-control-label mb-2" for="customCheck40">Ingresar a programas predeterminados y dejar el Iexplore como predeterminado. Por cada Perfil.</label>
+        </section>
+        <section class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <small id="serialHelp" class="form-text text-muted text-center m-3">Entrega de Equipo a Usuario.</small>
+                        <hr>
+                        <div class="custom-control custom-checkbox mr-4 ">
+                            <input type="checkbox" class="custom-control-input" id="customCheck32" name="pruebasCorreo">
+                            <label class="custom-control-label mb-2" for="customCheck32">Pruebas de correo usuario (Outlook) y/o demas buzones .</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck33" name="pruebasEnvioCorreo">
+                            <label class="custom-control-label mb-2" for="customCheck33">Hacer pruebas envio correo cifrado (Certificado Digital).</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck34" name="pruebasODBC">
+                            <label class="custom-control-label mb-2" for="customCheck34">Realizar pruebas con las ODBC´s (Desde Acces o Excel).</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck35" name="pruebasSkype">
+                            <label class="custom-control-label mb-2" for="customCheck35">Ingresar a Skype Empresarial (o chat empresarial).</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck36" name="pruebasOffice">
+                            <label class="custom-control-label mb-2" for="customCheck36">Ingresar y verificar correcto funcionamiento del paquete office  (Word, Excel Power Point y Outlook) Access, Visio y Project (si aplica).</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck37" name="pruebasImpresoras">
+                            <label class="custom-control-label mb-2" for="customCheck37">Verifique sus impresoras instaladas.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck38" name="pruebasAntivirus">
+                            <label class="custom-control-label mb-2" for="customCheck38">Verifique que tenga su antivirus instalado  (Indicar al usuario).</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck39" name="pruebas7Zip">
+                            <label class="custom-control-label mb-2" for="customCheck39">Verifique funcionamiento del 7ZIP.</label>
+                        </div>
+                    </div>
                 </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck41" name="VerificaFNTecla">
-                    <label class="custom-control-label mb-2" for="customCheck41">Instruir en el manejo de la tecla fn para utilidad de wifi brillo entre otros.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck42" name="VerificaAplicacionesUsuario">
-                    <label class="custom-control-label mb-2" for="customCheck42">Prueba aplicaciones según usuario.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck43" name="verificaOnbaseWeb">
-                    <label class="custom-control-label mb-2" for="customCheck43">Prueba onbase por web.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck44" name="verificaCRM">
-                    <label class="custom-control-label mb-2" for="customCheck44">Prueba onbase por CRM.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck45" name="verificaSisa">
-                    <label class="custom-control-label mb-2" for="customCheck45">Entre al aplicativo de Sisa.</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck46" name="verificaSAP">
-                    <label class="custom-control-label mb-2" for="customCheck46">Ingrese a Onbase SAP (preguntar perfil si lo necesita).</label>
-                </div> 
             </div>
-        </div>
-    </div>
-</section>
-<section class="container">
-    <div class="alert alert-dismissible alert-info">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>ALTO! </strong><a href="#" class="alert-link">Ultimos pasos</a>, Recuerda tomar el WinAudit y guardarlo en C:\Inv y validar el orden de Boot del equipo y clave BIOS.
-      </div>
-</section>
-<input type="text" name="cedula" class="text-center form-control" id="cedula" style="display: none;" readonly>
-<input type="text" name="equipoActual" class="text-center form-control" id="equipoActual" style="display: none;" readonly>
-<input type="text" name="equipoRetira" class="text-center form-control" id="equipoRetira" style="display: none;" readonly>
+        </section>
+        <section class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <small id="serialHelp" class="form-text text-muted text-center m-3">Verificar Internet e Intranet.</small>
+                        <hr>
+                        <div class="custom-control custom-checkbox mr-4 ">
+                            <input type="checkbox" class="custom-control-input" id="customCheck40" name="verificaProgramas">
+                            <label class="custom-control-label mb-2" for="customCheck40">Ingresar a programas predeterminados y dejar el Iexplore como predeterminado. Por cada Perfil.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck41" name="VerificaFNTecla">
+                            <label class="custom-control-label mb-2" for="customCheck41">Instruir en el manejo de la tecla fn para utilidad de wifi brillo entre otros.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck42" name="VerificaAplicacionesUsuario">
+                            <label class="custom-control-label mb-2" for="customCheck42">Prueba aplicaciones según usuario.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck43" name="verificaOnbaseWeb">
+                            <label class="custom-control-label mb-2" for="customCheck43">Prueba onbase por web.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck44" name="verificaCRM">
+                            <label class="custom-control-label mb-2" for="customCheck44">Prueba onbase por CRM.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck45" name="verificaSisa">
+                            <label class="custom-control-label mb-2" for="customCheck45">Entre al aplicativo de Sisa.</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck46" name="verificaSAP">
+                            <label class="custom-control-label mb-2" for="customCheck46">Ingrese a Onbase SAP (preguntar perfil si lo necesita).</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container">
+            <div class="alert alert-dismissible alert-info">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>ALTO! </strong><a href="#" class="alert-link">Ultimos pasos</a>, Recuerda tomar el WinAudit y guardarlo en C:\Inv y validar el orden de Boot del equipo y clave BIOS.
+            </div>
+        </section>
+        <input type="text" name="cedula" class="text-center form-control" id="cedula" style="display: none;" readonly>
+        <input type="text" name="equipoActual" class="text-center form-control" id="equipoActual" style="display: none;" readonly>
+        <input type="text" name="equipoRetira" class="text-center form-control" id="equipoRetira" style="display: none;" readonly>
 
-<div class="container m-auto text-center">
-    <button id="opciones" class="btn btn-outline-success btn-lg">Siguiente</button>
-</div>
-</form>
-<script src="/js/opciones.js"></script>
-<%- include('./partials/footer.ejs') %> 
+        <div class="container m-auto text-center">
+            <button id="opciones" class="btn btn-outline-success btn-lg">Siguiente</button>
+        </div>
+    </form>
+    <script src="/js/local.js"></script>
+    <%- include('./partials/footer.ejs') %>

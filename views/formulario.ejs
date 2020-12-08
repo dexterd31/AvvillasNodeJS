@@ -1,280 +1,280 @@
-<%- include('./partials/nav.ejs') %> 
-<form action="/formulario/opciones" method="POST">
-<section class="container mt-4">
-    <% if(error.message){ %>
-        <div class="alert alert-dismissible alert-secondary">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>ocurre un error!</strong> <%=error.message %>
-        </div>
-    <% } %>
-    
+<%- include('./partials/nav.ejs') %>
+    <form action="/formulario/opciones" method="POST">
+        <section class="container mt-4">
+            <% if(error.message){ %>
+                <div class="alert alert-dismissible alert-secondary">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>ocurre un error!</strong>
+                    <%=error.message %>
+                </div>
+                <% } %>
+                    <div id="info" class="alert alert-dismissible alert-info">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <h4 class="alert-heading">Importante!</h4>
+                        <p class="mb-0">La revision detallada del equipo contempla los datos del usuario y el equipo a realizar, asi mismo tener en cuenta que si es un formateo de equipo se debe realizar los backups del certificado digital del usuario, revision de ODBC
+                            en el perfil, tener en cuenta el nombre,ip y precheck el cual debe esta en su carpeta correspondiente en el disco local D.</p>
+                    </div>
+        </section>
+        <section class="container mt-3 mb-3">
+            <h3 class="text-center m-0">Datos de Servicio</h3>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                        <label for="numberServices">Numero de Servicio</label>
+                        <input type="text" name="numberServices" class="form-control" id="numberServices" placeholder="IM/C##-######" required>
+                        <small id="emailHelp" class="form-text text-muted">Recuerda ingresar los datos correctamente.</small>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                        <label for="typeServices">Tipo de Servicio</label>
+                        <select name="typeServices" class="custom-select">
+                <option value="" selected disabled>Seleccion</option>
+                <option value="Incidente">Incidente</option>
+                <option value="Imac">Imac</option>
+            </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                        <label for="Date">Fecha</label>
+                        <input type="date" name="Date" id="Date" style="
+            display: block;
+            width: 100%;
+            height: calc(1.5em + 0.75rem + 2px);
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #5a5a5a;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.4rem;" required>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container mt-3 mb-3">
+            <h3 class="text-center m-0">Datos de Usuario</h3>
+            <hr>
+            <div class="text-center" id="errorDNI" style="display: none;"></div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 text-center m-auto ">
+                    <div class="form-group has-success">
+                        <label for="DNI">Cedula</label>
+                        <input type="text" name="DNI" class="text-center form-control " id="DNI" placeholder="##########" required>
+                        <small id="DNIHelp" class="form-text text-muted">Si la cedula no existe, veras un nuevo opcion para crear un nuevo usuario.</small>
+                        <a type="button" id="ModalUsuario" class="btn btn-info mt-2" style="display: none; margin: auto; width: 20%;">Crear</a>
+                    </div>
+                    <div class="container m-auto text-center">
+                        <a href="/buscarCedula" type="button" class="btn btn-outline-info" id="buscarCedula">Buscar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center mt-4" id="infoCedula" style="display: none;">
+                <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" class="text-center form-control" id="nombre" readonly>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" name="apellido" class="text-center form-control" id="apellido" readonly>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                        <label for="telefono">Extención</label>
+                        <input type="text" name="telefono" class="text-center form-control" id="telefono" readonly>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container mt-3 mb-3">
+            <h3 class="text-center m-0">Prealistamiento</h3>
+            <hr>
+            <div class="form-group d-flex justify-content-center">
+                <div class="custom-control custom-checkbox mr-4 ">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" name="cambioEquipo">
+                    <label class="custom-control-label" for="customCheck1">Cambio de equipo.</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck2" name="Formateo">
+                    <label class="custom-control-label" for="customCheck2">Formateo de equipo</label>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 text-center m-auto">
+                <div class="" id="errorSerial"></div>
+                <div class="form-group">
+                    <label for="serialNumber">Equipo Actual</label>
+                    <input type="text" name="serialNumber" class="text-center form-control" id="serialNumber" placeholder="Serial" required>
+                    <small id="serialHelp" class="form-text text-muted">Si el equipo no existe, veras un nuevo formulario para crear un nuevo elemento.</small>
+                    <a type="button" id="ModalSerial" class="btn btn-info mt-2" style="display: none; margin: auto; width: 20%;">Crear</a>
+                </div>
+                <div class="container m-auto text-center">
+                    <a href="/buscarSerial" type="button" class="btn btn-outline-info" id="buscarSerial">Buscar</a>
+                </div>
+            </div>
+            <div class="row text-center mt-4" id="infoMaquina" style="display: none;">
+                <div class="col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <label for="marca">Marca</label>
+                        <input type="text" name="marca" class="text-center form-control" id="marca" readonly>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <label for="modelo">Modelo</label>
+                        <input type="text" name="modelo" class="text-center form-control" id="modelo" readonly>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <label for="placa">Placa</label>
+                        <input type="text" name="placa" class="text-center form-control" id="placa" readonly>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <label for="spare">Spare</label>
+                        <input type="text" name="spare" class="text-center form-control" id="spare" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3">
+                <div id="equipoRetira" class="col-sm-12 col-md-6 text-center m-auto" style="display: none;">
+                    <div class="" id="errorSerialRetira"></div>
+                    <div class="form-group">
+                        <label for="serialNumber">Equipo Retira</label>
+                        <input type="text" name="serialNumberRetira" class="text-center form-control" id="serialNumberRetira" placeholder="Serial">
+                        <small id="serialHelpRetira" class="form-text text-muted">Si el equipo no existe, veras un nuevo formulario para crear un nuevo elemento.</small>
+                        <a type="button" id="ModalSerialRetira" class="btn btn-info mt-2" style="display: none; margin: auto; width: 20%;">Crear</a>
+                    </div>
+                    <div class="container m-auto text-center">
+                        <a href="/buscarSerial" type="button" class="btn btn-outline-info" id="buscarSerialRetira">Buscar</a>
+                    </div>
+                </div>
+                <div class="row text-center mt-4" id="infoMaquinaRetira" style="display: none;">
+                    <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                            <label for="marca">Marca</label>
+                            <input type="text" name="marca" class="text-center form-control" id="marcaRetira" readonly>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                            <label for="modelo">Modelo</label>
+                            <input type="text" name="modelo" class="text-center form-control" id="modeloRetira" readonly>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                            <label for="placa">Placa</label>
+                            <input type="text" name="placa" class="text-center form-control" id="placaRetira" readonly>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                            <label for="spare">Spare</label>
+                            <input type="text" name="spare" class="text-center form-control" id="spareRetira" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <div id="info" class="alert alert-dismissible alert-info">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <h4 class="alert-heading">Importante!</h4>
-        <p class="mb-0">La revision detallada del equipo contempla los datos del usuario y el equipo a realizar, asi mismo tener en cuenta que si es un formateo de equipo se debe realizar los backups del certificado digital del usuario, revision de ODBC en el perfil, tener en cuenta el nombre,ip y precheck el cual debe esta en su carpeta correspondiente en el disco local D.</p>
-      </div>
-</section>
-<section class="container mt-3 mb-3">
-    <h3 class="text-center m-0">Datos de Servicio</h3>
-    <hr>
-    <div class="row">
-        <div class="col-sm-12 col-md-4">
-            <div class="form-group">
-                <label for="numberServices">Numero de Servicio</label>
-                <input type="text" name="numberServices" class="form-control" id="numberServices" placeholder="IM/C##-######" required>
-                <small id="emailHelp" class="form-text text-muted">Recuerda ingresar los datos correctamente.</small>
+        <!-- Modales -->
+
+
+        <!-- modal usuario -->
+        <div class="modal" id="modalDNI">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="text-center modal-title">Datos de usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="respuesta" style="display: none;"></div>
+                        <label for="" class="d-block text-center">Nombre</label>
+                        <input type="text" name="modalNombre" id="nombre" class="w-100 text-center mb-2">
+                        <label for="" class="d-block text-center">Apellidos</label>
+                        <input type="text" name="modalApellido" id="apellido" class="w-100 text-center mb-2">
+                        <label for="" class="d-block text-center">Cedula</label>
+                        <input type="text" name="modalCedula" id="cedula" class="w-100 text-center mb-2">
+                        <label for="" class="d-block text-center">Extención</label>
+                        <input type="text" name="modalExt" id="ext" class="w-100 text-center mb-2">
+                        <label for="" class="d-block text-center">Area</label>
+                        <input type="text" name="modalArea" id="area" class="w-100 text-center mb-2">
+                        <label for="" class="d-block text-center">Correo</label>
+                        <input type="text" name="modalCorreo" id="correo" class="w-100 text-center mb-2">
+                        <label for="" class="d-block text-center">Usuario de red</label>
+                        <input type="text" name="modalUsuarioRed" id="usuarioRed" class="w-100 text-center mb-3">
+                    </div>
+                    <div class="modal-footer">
+                        <button id="guardarUsuario" type="button" class="btn btn-primary">Guardar Cambios</button>
+                        <button id="cerrar" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-4">
-            <div class="form-group">
-                <label for="typeServices">Tipo de Servicio</label>
-                <select name="typeServices" class="custom-select">
-                    <option value="" selected disabled>Seleccion</option>
-                    <option value="Incidente">Incidente</option>
-                    <option value="Imac">Imac</option>
-                </select>
+
+        <!-- modal serial -->
+        <div class="modal" id="modalSerial">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="text-center modal-title">Datos de usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="respuestaEquipo" style="display: none;"></div>
+                        <label for="" class="d-block text-center">Tipo</label>
+                        <input type="text" name="modalTipo" id="tipo" class="w-100 text-center mb-2">
+                        <label for="" class="d-block text-center">Serial</label>
+                        <input type="text" name="modalSerial" id="serial" class="w-100 text-center mb-2">
+                        <label for="" class="d-block text-center">Marca</label>
+                        <input type="text" name="modalMarca" id="marca" class="w-100 text-center mb-2">
+                        <label for="" class="d-block text-center">Modelo</label>
+                        <input type="text" name="modalModelo" id="modelo" class="w-100 text-center mb-2">
+                        <label for="" class="d-block text-center">Placa</label>
+                        <input type="text" name="modalPlaca" id="placa" class="w-100 text-center mb-2">
+                        <label for="" class="d-block text-center">Spare</label>
+                        <input type="text" name="modalSpare" id="spare" class="w-100 text-center mb-3">
+                    </div>
+                    <div class="modal-footer">
+                        <button id="guardarEquipo" type="button" class="btn btn-primary">Guardar Cambios</button>
+                        <button id="cerrarEquipo" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-4">
-            <div class="form-group">
-                <label for="Date">Fecha</label>
-                <input type="date" name="Date" id="Date" style="
-                display: block;
-                width: 100%;
-                height: calc(1.5em + 0.75rem + 2px);
-                padding: 0.375rem 0.75rem;
-                font-size: 1rem;
-                font-weight: 400;
-                line-height: 1.5;
-                color: #5a5a5a;
-                background-color: #fff;
-                background-clip: padding-box;
-                border: 1px solid #ced4da;
-                border-radius: 0.4rem;" required>
-              </div>
-        </div>
-    </div>
-</section>
-<section class="container mt-3 mb-3">
-    <h3 class="text-center m-0">Datos de Usuario</h3>
-    <hr>
-    <div class="text-center" id="errorDNI" style="display: none;"></div>
-    <div class="row">
-        <div class="col-sm-12 col-md-6 text-center m-auto ">
-            <div class="form-group has-success">
-                <label for="DNI">Cedula</label>
-                <input type="text" name="DNI" class="text-center form-control " id="DNI" placeholder="##########" required>
-                <small id="DNIHelp" class="form-text text-muted">Si la cedula no existe, veras un nuevo opcion para crear un nuevo usuario.</small>
-                <a type="button" id="ModalUsuario" class="btn btn-info mt-2" style="display: none; margin: auto; width: 20%;">Crear</a>
-            </div>
-            <div class="container m-auto text-center">
-                <a href="/buscarCedula" type="button" class="btn btn-outline-info" id="buscarCedula">Buscar</a>
-            </div>
-        </div>
-    </div>
-    <div class="row text-center mt-4" id="infoCedula" style="display: none;">
-        <div class="col-sm-12 col-md-4">
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" class="text-center form-control" id="nombre" readonly>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-4">
-            <div class="form-group">
-                <label for="apellido">Apellido</label>
-                <input type="text" name="apellido" class="text-center form-control" id="apellido" readonly>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-4">
-            <div class="form-group">
-                <label for="telefono">Extención</label>
-                <input type="text" name="telefono" class="text-center form-control" id="telefono" readonly>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="container mt-3 mb-3">
-    <h3 class="text-center m-0">Prealistamiento</h3>
-    <hr>
-    <div class="form-group d-flex justify-content-center">
-        <div class="custom-control custom-checkbox mr-4 ">
-          <input type="checkbox" class="custom-control-input" id="customCheck1" name="cambioEquipo">
-          <label class="custom-control-label" for="customCheck1">Cambio de equipo.</label>
-        </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheck2" name="Formateo">
-            <label class="custom-control-label" for="customCheck2">Formateo de equipo</label>
-        </div>
-      </div>
-    <div class="col-sm-12 col-md-6 text-center m-auto">
-        <div class="" id="errorSerial"></div>
-        <div class="form-group">
-            <label for="serialNumber">Equipo Actual</label>
-            <input type="text" name="serialNumber" class="text-center form-control" id="serialNumber" placeholder="Serial" required>
-            <small id="serialHelp" class="form-text text-muted">Si el equipo no existe, veras un nuevo formulario para crear un nuevo elemento.</small>
-            <a type="button" id="ModalSerial" class="btn btn-info mt-2" style="display: none; margin: auto; width: 20%;">Crear</a>
-        </div>
+
+
+        <script>
+            $('#ModalUsuario').click(function() {
+                $('#modalDNI').modal('show');
+            })
+
+            $('#ModalSerial').click(function() {
+                $('#modalSerial').modal('show');
+            })
+
+            $('#ModalSerialRetira').click(function() {
+                $('#modalSerial').modal('show');
+            })
+        </script>
         <div class="container m-auto text-center">
-            <a href="/buscarSerial" type="button" class="btn btn-outline-info" id="buscarSerial">Buscar</a>
+            <button id="siguiente" class="btn btn-outline-success btn-lg">Siguiente</button>
         </div>
-    </div>
-    <div class="row text-center mt-4" id="infoMaquina" style="display: none;">
-        <div class="col-sm-12 col-md-3">
-            <div class="form-group">
-                <label for="marca">Marca</label>
-                <input type="text" name="marca" class="text-center form-control" id="marca" readonly>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-3">
-            <div class="form-group">
-                <label for="modelo">Modelo</label>
-                <input type="text" name="modelo" class="text-center form-control" id="modelo" readonly>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-3">
-            <div class="form-group">
-                <label for="placa">Placa</label>
-                <input type="text" name="placa" class="text-center form-control" id="placa" readonly>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-3">
-            <div class="form-group">
-                <label for="spare">Spare</label>
-                <input type="text" name="spare" class="text-center form-control" id="spare" readonly>
-            </div>
-        </div>
-    </div>
-    <div class="mt-3">
-        <div id="equipoRetira" class="col-sm-12 col-md-6 text-center m-auto" style="display: none;">
-            <div class="" id="errorSerialRetira"></div>
-            <div class="form-group">
-                <label for="serialNumber">Equipo Retira</label>
-                <input type="text" name="serialNumberRetira" class="text-center form-control" id="serialNumberRetira" placeholder="Serial">
-                <small id="serialHelpRetira" class="form-text text-muted">Si el equipo no existe, veras un nuevo formulario para crear un nuevo elemento.</small>
-                <a type="button" id="ModalSerialRetira" class="btn btn-info mt-2" style="display: none; margin: auto; width: 20%;">Crear</a>
-            </div>
-            <div class="container m-auto text-center">
-                <a href="/buscarSerial" type="button" class="btn btn-outline-info" id="buscarSerialRetira">Buscar</a>
-            </div>
-        </div>
-        <div class="row text-center mt-4" id="infoMaquinaRetira" style="display: none;">
-            <div class="col-sm-12 col-md-3">
-                <div class="form-group">
-                    <label for="marca">Marca</label>
-                    <input type="text" name="marca" class="text-center form-control" id="marcaRetira" readonly>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-3">
-                <div class="form-group">
-                    <label for="modelo">Modelo</label>
-                    <input type="text" name="modelo" class="text-center form-control" id="modeloRetira" readonly>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-3">
-                <div class="form-group">
-                    <label for="placa">Placa</label>
-                    <input type="text" name="placa" class="text-center form-control" id="placaRetira" readonly>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-3">
-                <div class="form-group">
-                    <label for="spare">Spare</label>
-                    <input type="text" name="spare" class="text-center form-control" id="spareRetira" readonly>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Modales -->
-
-
-<!-- modal usuario -->
-<div class="modal" id="modalDNI">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="text-center modal-title">Datos de usuario</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div id="respuesta" style="display: none;"></div>
-            <label for="" class="d-block text-center">Nombre</label>
-            <input type="text" name="modalNombre" id="nombre" class="w-100 text-center mb-2">
-            <label for="" class="d-block text-center">Apellidos</label>
-            <input type="text" name="modalApellido" id="apellido" class="w-100 text-center mb-2">
-            <label for="" class="d-block text-center">Cedula</label>
-            <input type="text" name="modalCedula" id="cedula" class="w-100 text-center mb-2">
-            <label for="" class="d-block text-center">Extención</label>
-            <input type="text" name="modalExt" id="ext" class="w-100 text-center mb-2">
-            <label for="" class="d-block text-center">Area</label>
-            <input type="text" name="modalArea" id="area" class="w-100 text-center mb-2">
-            <label for="" class="d-block text-center">Correo</label>
-            <input type="text" name="modalCorreo" id="correo" class="w-100 text-center mb-2">
-            <label for="" class="d-block text-center">Usuario de red</label>
-            <input type="text" name="modalUsuarioRed" id="usuarioRed" class="w-100 text-center mb-3">
-            </div>
-            <div class="modal-footer">
-            <button id="guardarUsuario" type="button" class="btn btn-primary">Guardar Cambios</button>
-            <button id="cerrar" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            </div>
-      </div>
-    </div>
-</div>
-
-<!-- modal serial -->
-<div class="modal" id="modalSerial">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="text-center modal-title">Datos de usuario</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div id="respuestaEquipo" style="display: none;"></div>
-            <label for="" class="d-block text-center">Tipo</label>
-            <input type="text" name="modalTipo" id="tipo" class="w-100 text-center mb-2">
-            <label for="" class="d-block text-center">Serial</label>
-            <input type="text" name="modalSerial" id="serial" class="w-100 text-center mb-2">
-            <label for="" class="d-block text-center">Marca</label>
-            <input type="text" name="modalMarca" id="marca" class="w-100 text-center mb-2">
-            <label for="" class="d-block text-center">Modelo</label>
-            <input type="text" name="modalModelo" id="modelo" class="w-100 text-center mb-2">
-            <label for="" class="d-block text-center">Placa</label>
-            <input type="text" name="modalPlaca" id="placa" class="w-100 text-center mb-2">
-            <label for="" class="d-block text-center">Spare</label>
-            <input type="text" name="modalSpare" id="spare" class="w-100 text-center mb-3">
-            </div>
-            <div class="modal-footer">
-            <button id="guardarEquipo" type="button" class="btn btn-primary">Guardar Cambios</button>
-            <button id="cerrarEquipo" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            </div>
-      </div>
-    </div>
-</div>
-
-
-  <script>
-        $('#ModalUsuario').click(function(){
-            $('#modalDNI').modal('show');
-        })
-
-        $('#ModalSerial').click(function(){
-            $('#modalSerial').modal('show');
-        })
-
-        $('#ModalSerialRetira').click(function(){
-            $('#modalSerial').modal('show');
-        })
-  </script>
-<div class="container m-auto text-center">
-    <button id="siguiente" class="btn btn-outline-success btn-lg">Siguiente</button>
-</div>
-</form>
-<script src="/js/index.js"></script>
-<%- include('./partials/footer.ejs') %> 
+    </form>
+    <script src="/js/index.js"></script>
+    <%- include('./partials/footer.ejs') %>
