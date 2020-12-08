@@ -1,5 +1,5 @@
-var equipos = document.getElementById('cambioEquipos');
-var formateos = document.getElementById('formateos');
+const equipos = document.getElementById('cambioEquipos')
+const formateos = document.getElementById('formateos')
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -8,8 +8,14 @@ var myChart = new Chart(ctx, {
         datasets: [{
             label: 'Numero de equipos',
             data: [Number(equipos.textContent), Number(formateos.textContent), 0],
-            backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
-            borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)'
+            ],
             borderWidth: 1
         }]
     },
@@ -22,4 +28,4 @@ var myChart = new Chart(ctx, {
             }]
         }
     }
-});
+})
